@@ -194,7 +194,6 @@
                                 android:id="@+id/MovieName2"
                                 android:layout_width="64dp"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/calibri"
                                 android:text="Kong: Skull Island"
                                 android:textAlignment="center"
                                 android:textColor="#7E7E7E"

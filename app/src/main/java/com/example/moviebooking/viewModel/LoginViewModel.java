@@ -1,5 +1,6 @@
 package com.example.moviebooking.viewModel;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
@@ -8,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.moviebooking.ui.LoginActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -20,7 +22,7 @@ public class LoginViewModel extends ViewModel {
 
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseUser user;
-    private MutableLiveData<FirebaseUser> mutableLiveData;
+    private MutableLiveData<FirebaseUser> mutableLiveData=new MutableLiveData<>();
 
 
     public FirebaseUser getUserFromDataBase(String email, String password, final Context context) {
@@ -30,6 +32,8 @@ public class LoginViewModel extends ViewModel {
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+
+
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.e(TAG, "signInWithEmail:success");
@@ -45,6 +49,7 @@ public class LoginViewModel extends ViewModel {
 
                     }
                 });
+
 
         return user;
 
