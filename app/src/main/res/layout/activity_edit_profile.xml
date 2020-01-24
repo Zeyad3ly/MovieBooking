@@ -45,10 +45,10 @@
             android:src="@drawable/ic_camera_alt_black_24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.304"
+            app:layout_constraintHorizontal_bias="0.445"
             app:layout_constraintStart_toStartOf="@+id/profilePicture"
             app:layout_constraintTop_toTopOf="@+id/profilePicture"
-            app:layout_constraintVertical_bias="0.148" />
+            app:layout_constraintVertical_bias="0.233" />
 
         <TextView
             android:padding="8dp"
