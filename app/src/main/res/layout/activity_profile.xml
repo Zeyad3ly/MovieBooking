@@ -115,6 +115,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="Drake Adams"
+                        android:id="@+id/user_name_tv"
                         android:textColor="#424242"
                         android:textSize="21sp"
                         android:textStyle="bold" />

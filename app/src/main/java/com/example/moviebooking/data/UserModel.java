@@ -3,6 +3,8 @@ package com.example.moviebooking.data;
 public class UserModel {
         private String name , password , email , id;
 
+        public UserModel(){}
+
     public void setName(String name) {
         this.name = name;
     }

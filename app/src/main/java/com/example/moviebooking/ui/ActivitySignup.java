@@ -79,7 +79,8 @@ public class ActivitySignup extends AppCompatActivity implements SignUpImp {
             signUpViewModel.getUser(user,this).observe(this, new Observer<FirebaseUser>() {
                 @Override
                 public void onChanged(FirebaseUser firebaseUser) {
-                    if (firebaseUser != null) sendUserToMain(getApplicationContext());
+                    if (firebaseUser != null)
+                        sendUserToMain(getApplicationContext());
 
                 }
             });
