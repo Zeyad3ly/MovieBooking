@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.ProfileActivity" />
+        <activity android:name=".ui.EditProfile"/>
         <activity android:name=".ui.LoginActivity">
 
 
