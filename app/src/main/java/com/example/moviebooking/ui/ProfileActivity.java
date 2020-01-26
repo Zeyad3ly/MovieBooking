@@ -1,28 +1,22 @@
 package com.example.moviebooking.ui;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
-
+import android.content.Intent;
+import android.view.View;
 import com.example.moviebooking.R;
 import com.example.moviebooking.data.UserModel;
 import com.example.moviebooking.viewModel.ProfileViewModel;
-import com.google.firebase.auth.FirebaseAuth;
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
 public class ProfileActivity extends AppCompatActivity {
     @BindView(R.id.btnBack)
     ImageView btnBack;
@@ -39,11 +33,6 @@ public class ProfileActivity extends AppCompatActivity {
     ProfileViewModel profileViewModel;
     @BindView(R.id.user_name_tv)
     TextView userNameTv;
-    @BindView(R.id.btnLogout)
-    Button btnLogout;
-    @BindView(R.id.rootLayout)
-    RelativeLayout rootLayout;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +42,8 @@ public class ProfileActivity extends AppCompatActivity {
         profileViewModel.getMutableLiveData(this).observe(this, new Observer<UserModel>() {
             @Override
             public void onChanged(UserModel userModel) {
-                userNameTv.setText(userModel.getName());
+            userNameTv.setText(userModel.getName());
+            if(userModel.getImage()!=null) Picasso.get().load(userModel.getImage()).into(imgProfilePic);
             }
         });
         ImageView btnEditProfile = findViewById(R.id.btnEditProfile);
@@ -70,17 +60,6 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent2 = new Intent(getBaseContext(), MainActivity.class);
                 startActivity(intent2);
-            }
-        });
-
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intent3 = new Intent(getBaseContext(), LoginActivity.class);
-                intent3.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent3);
-
             }
         });
 

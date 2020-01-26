@@ -1,5 +1,8 @@
 package com.example.moviebooking.viewModel;
 
+import android.content.Context;
+import android.net.Uri;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -17,9 +20,17 @@ public class EditProfileViewModel extends ViewModel {
 
     }
 
-    public void setUserData(UserModel userModel, String id) {
-        userRepoImp.updateUserData(userModel, id);
+    public void setUserData(UserModel userModel, String id, Context applicationContext) {
+        userRepoImp.updateUserData(userModel, id,applicationContext);
     }
+
+
+    public void uploadPic(Uri resultUri) {
+        userRepoImp.uploadImage(resultUri);
+
+
+    }
+
 
 
 }

@@ -21,11 +21,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.moviebooking.R;
 import com.example.moviebooking.data.MovieModel;
+import com.example.moviebooking.data.UserModel;
 import com.example.moviebooking.viewModel.MainViewModel;
+import com.example.moviebooking.viewModel.ProfileViewModel;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -70,8 +73,8 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         FirebaseApp.initializeApp(this);
         movieModels = new ArrayList<>();
-
-        ImageView imgOpenProfile = findViewById(R.id.imgOpenProfile);
+        ProfileViewModel profileViewModel;
+        final ImageView imgOpenProfile = findViewById(R.id.imgOpenProfile);
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 
         mainViewModel.getMutableLiveData().observe(this, new Observer<ArrayList<MovieModel>>() {
@@ -85,6 +88,15 @@ public class MainActivity extends AppCompatActivity {
                 mainRecyclerView.setAdapter(recyclerViewAdapter);
                 recyclerViewAdapter.notifyDataSetChanged();
                if(movieModelss.size()>0) Log.e("MainActivityLog",movieModelss.get(0).getName());
+            }
+        });
+
+
+        profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel.class);
+        profileViewModel.getMutableLiveData(this).observe(this, new Observer<UserModel>() {
+            @Override
+            public void onChanged(UserModel userModel) {
+                if(userModel.getImage()!=null) Picasso.get().load(userModel.getImage()).into(imgOpenProfile);
             }
         });
         imgOpenProfile.setOnClickListener(new View.OnClickListener() {

@@ -97,7 +97,7 @@
                     app:cardCornerRadius="6dp"
                     app:cardElevation="0dp">
 
-                    <ImageView
+                    <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/imgProfilePic"
                         android:layout_width="150dp"
                         android:layout_height="90dp"

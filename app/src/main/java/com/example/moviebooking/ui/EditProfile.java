@@ -1,5 +1,7 @@
 package com.example.moviebooking.ui;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -7,6 +9,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -17,13 +20,14 @@ import com.example.moviebooking.viewModel.EditProfileViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class EditProfile extends AppCompatActivity {
-
     @BindView(R.id.cover)
     ImageView cover;
     @BindView(R.id.profilePicture)
@@ -46,6 +50,28 @@ public class EditProfile extends AppCompatActivity {
     Button updateDataButton;
     private EditProfileViewModel viewModel;
     private UserModel userModel;
+    private Uri resultUri;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if (resultCode == RESULT_OK) {
+                resultUri = result.getUri();
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                Exception error = result.getError();
+            }
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if (resultUri != null) Picasso.get().load(resultUri).into(profilePicture);
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,12 +90,9 @@ public class EditProfile extends AppCompatActivity {
                         Picasso.get().load(userModel.getImage()).into(profilePicture);
                     if (userModel.getName() != null) userNameEt.setText(userModel.getName());
                     if (userModel.getPhone() != null) phoneEt.setText(userModel.getPhone());
-
-
                 }
             }
         });
-
         updateDataButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,12 +100,32 @@ public class EditProfile extends AppCompatActivity {
                 String userName = userNameEt.getText().toString();
                 String phone = phoneEt.getText().toString();
                 String email = mailAddressEt.getText().toString();
-                userModel.setEmail(email);
-                userModel.setName(userName);
-                userModel.setPhone(phone);
-                viewModel.setUserData(userModel, FirebaseAuth.getInstance().getUid());
+                if (resultUri != null) {
+                    viewModel.uploadPic(resultUri);
+                    Picasso.get().load(resultUri).into(profilePicture);
 
 
+                }
+
+                if (userName.isEmpty()) userNameEt.setError("you must add a name");
+                else if (phone.isEmpty()) phoneEt.setError("you must add a phone number");
+                else {
+                    userModel.setEmail(email);
+                    userModel.setName(userName);
+                    userModel.setPhone(phone);
+                    viewModel.setUserData(userModel, FirebaseAuth.getInstance().getUid(), getApplicationContext());
+                }
+
+
+            }
+        });
+
+        uploadPicFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CropImage.activity()
+                        .setGuidelines(CropImageView.Guidelines.ON)
+                        .start(EditProfile.this);
             }
         });
 
