@@ -1,7 +1,8 @@
 package com.example.moviebooking.data;
 
 public class UserModel {
-        private String name , password , email , id;
+
+        private String name , password , email , id , image , phone;
 
         public UserModel(){}
 
@@ -11,6 +12,22 @@ public class UserModel {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPhone() {
+        return phone;
     }
 
     public void setEmail(String email) {
