@@ -34,13 +34,13 @@
 
     <EditText
         android:id="@+id/edtUserName"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:hint="User name"
+        android:maxLines="1"
         app:layout_constraintEnd_toEndOf="@id/tvSignUp"
         app:layout_constraintStart_toStartOf="@id/tvSignUp"
         app:layout_constraintTop_toBottomOf="@id/tvSignUp" />
@@ -53,11 +53,31 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:hint="Email"
+        android:maxLines="1"
         app:layout_constraintEnd_toEndOf="@id/tvSignUp"
         app:layout_constraintStart_toStartOf="@id/tvSignUp"
         app:layout_constraintTop_toBottomOf="@id/edtUserName" />
 
+    <ImageView
+        android:id="@+id/showPassword"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_visibility_black_24dp"
+        tools:layout_editor_absoluteX="371dp"
+        tools:layout_editor_absoluteY="381dp"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/hidePassowd"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_visibility_black_24dp"
+        tools:layout_editor_absoluteX="371dp"
+        tools:layout_editor_absoluteY="434dp"
+        tools:ignore="MissingConstraints" />
+
     <EditText
+
         android:id="@+id/edtPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -66,9 +86,9 @@
         android:layout_marginEnd="8dp"
         android:hint="Password"
         android:inputType="textPassword"
+        android:maxLines="1"
         app:layout_constraintEnd_toEndOf="@id/tvSignUp"
         app:layout_constraintStart_toStartOf="@id/tvSignUp"
-
         app:layout_constraintTop_toBottomOf="@id/edtEmail" />
 
     <EditText
@@ -79,17 +99,18 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:hint="Confirm Password"
+        android:inputType="textPassword"
+        android:maxLines="1"
         app:layout_constraintEnd_toEndOf="@id/tvSignUp"
         app:layout_constraintStart_toStartOf="@id/tvSignUp"
         app:layout_constraintTop_toBottomOf="@id/edtPassword" />
 
     <Button
-        android:background="@drawable/buttonshape"
-
         android:id="@+id/btnSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:background="@drawable/buttonshape"
         android:text="Sign up"
         android:textColor="@color/gray_600"
         android:textSize="16dp"
