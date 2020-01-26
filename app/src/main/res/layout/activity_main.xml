@@ -134,101 +134,13 @@
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
-                <HorizontalScrollView
-                    android:id="@+id/HorizontalScrollView"
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/main_recyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:scrollbars="none">
+                    android:layout_height="wrap_content">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="8dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="4dp"
-                            android:layout_marginRight="4dp"
-                            android:background="@drawable/light_gray_rounded_border_shape"
-                            android:orientation="vertical"
-                            android:padding="12dp">
-
-                            <ImageView
-                                android:id="@+id/imgMovieSample"
-                                android:layout_width="64dp"
-                                android:layout_height="64dp"
-                                android:layout_marginBottom="8dp"
-                                android:src="@drawable/movie_img1" />
-
-                            <TextView
-                                android:id="@+id/MovieName"
-                                android:layout_width="64dp"
-                                android:layout_height="wrap_content"
-                                android:text="World of Warcraft"
-                                android:textAlignment="center"
-                                android:textColor="#7E7E7E"
-                                android:textSize="14sp" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="4dp"
-                            android:layout_marginRight="4dp"
-                            android:background="@drawable/light_gray_rounded_border_shape"
-                            android:orientation="vertical"
-                            android:padding="12dp">
-
-                            <ImageView
-                                android:id="@+id/imgMovieSample2"
-                                android:layout_width="64dp"
-                                android:layout_height="64dp"
-                                android:layout_marginBottom="8dp"
-                                android:src="@drawable/movie_img2" />
-
-                            <TextView
-                                android:id="@+id/MovieName2"
-                                android:layout_width="64dp"
-                                android:layout_height="wrap_content"
-                                android:text="Kong: Skull Island"
-                                android:textAlignment="center"
-                                android:textColor="#7E7E7E"
-                                android:textSize="14sp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="4dp"
-                            android:layout_marginRight="4dp"
-                            android:background="@drawable/light_gray_rounded_border_shape"
-                            android:orientation="vertical"
-                            android:padding="12dp">
-
-                            <ImageView
-                                android:id="@+id/imgMovieSample3"
-                                android:layout_width="64dp"
-                                android:layout_height="64dp"
-                                android:layout_marginBottom="8dp"
-                                android:src="@drawable/movie_img3" />
-
-                            <TextView
-                                android:id="@+id/MovieName3"
-                                android:layout_width="64dp"
-                                android:layout_height="wrap_content"
-                                android:text="The Lego Batman"
-                                android:textAlignment="center"
-                                android:textColor="#7E7E7E"
-                                android:textSize="14sp" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </HorizontalScrollView>
+                </androidx.recyclerview.widget.RecyclerView>
 
 
             </LinearLayout>
