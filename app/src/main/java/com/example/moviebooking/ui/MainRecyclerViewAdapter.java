@@ -1,5 +1,6 @@
 package com.example.moviebooking.ui;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,11 +32,25 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
 
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
-        MovieModel movieModel = movieModelList.get(position);
+        final MovieModel movieModel = movieModelList.get(position);
         if (movieModel.getImage() != null)
             Picasso.get().load(movieModel.getImage().toString()).into(holder.moviePoster);
-        holder.movieName.setText(movieModel.getName().toString());
+        holder.movieName.setText(movieModel.getName().toString() + "");
         Log.e("MainAdapter",movieModel.getName());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(context,SeatsSelectionActivity.class);
+                i.putExtra("movieName",movieModel.getName());
+                i.putExtra("movieId",movieModel.getId());
+                i.putExtra("moviePic",movieModel.getImage());
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(i);
+
+            }
+        });
 
     }
 

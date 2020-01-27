@@ -6,6 +6,62 @@
     android:layout_height="match_parent"
     tools:context=".ui.SeatsSelectionActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout_seats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/strip_bg"
+        android:elevation="0dp"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            style="@style/AppTheme.Toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgOpenProfile"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:src="@drawable/placehold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/movieName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="36dp"
+                    android:layout_marginRight="36dp"
+                    android:text="movie name "
+                    android:textAlignment="center"
+                    android:textColor="#4e4e50"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imgOpenProfile"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/imgOpenProfile"
+                    app:layout_constraintTop_toTopOf="@id/imgOpenProfile" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
 
     <ImageView
         android:id="@+id/mainScreen"
@@ -13,22 +69,38 @@
         android:layout_height="176dp"
         android:background="#000000"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnProceed"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout_seats"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/movie_poster"
+        android:layout_width="0dp"
+        android:layout_height="125dp"
+        android:layout_margin="8dp"
+        android:background="#fefefe"
+
+        app:layout_constraintBottom_toBottomOf="@+id/mainScreen"
+        app:layout_constraintEnd_toStartOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="MAIN SCREEN"
         android:textColor="@color/gray_600"
         android:textSize="22dp"
+        app:layout_constraintVertical_bias="0.1"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/mainScreen"
         app:layout_constraintEnd_toEndOf="@+id/mainScreen"
         app:layout_constraintStart_toStartOf="@+id/mainScreen"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="78dp" />
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout_seats"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/seat1"
@@ -36,6 +108,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="8dp"
         android:text="1"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mainScreen"
         tools:ignore="MissingConstraints" />
 
@@ -44,6 +117,7 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:text="2"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seat1"
         tools:ignore="MissingConstraints" />
 
@@ -52,6 +126,7 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:text="3"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/seat2"
         tools:ignore="MissingConstraints" />
 
@@ -90,17 +165,31 @@
         android:id="@+id/seat6"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        app:layout_constraintTop_toBottomOf="@id/seat7"
+        android:text="6"
         app:layout_constraintRight_toRightOf="@id/seat7"
-        android:text="6"/>
+        app:layout_constraintTop_toBottomOf="@id/seat7" />
 
     <Button
         android:id="@+id/seat5"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        app:layout_constraintTop_toTopOf="@id/seat6"
+        android:text="5"
         app:layout_constraintBottom_toBottomOf="@id/seat6"
         app:layout_constraintRight_toLeftOf="@id/seat6"
-        android:text="5"
-        />
+        app:layout_constraintTop_toTopOf="@id/seat6" />
+
+    <Button
+        android:id="@+id/btnProceed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@drawable/buttonshape"
+        android:text="PROCEED"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
